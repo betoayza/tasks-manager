@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 
@@ -20,17 +21,29 @@ const SignUpSchema = yup.object().shape({
     .required(`Priority  required`),
 });
 
-export const FormAddTask = ({ setModal, tasks, setTasks }) => {
+export const FormEditTask = ({ task, setModal, tasks, setTasks }) => {
   return (
     <div>
-      <h1>Add Task:</h1>
+      <h1>Edit Task:</h1>
       <Formik
-        initialValues={{ name: "", description: "", priority: "" }}
+        initialValues={{
+          id: task.id,
+          name: task.name,
+          description: task.description,
+          isCompleted: task.isCompleted,
+          priority: task.priority,
+        }}
         validationSchema={SignUpSchema}
         onSubmit={async (values) => {
           await new Promise((resolve) => setTimeout(resolve, 500));
           alert(JSON.stringify(values, null, 2));
-          setTasks([...tasks, values]);
+          let tasksUpdated = tasks.map((tsk) => {
+            if (tsk.id === task.id) {
+              tsk = values;
+            }
+            return tsk;
+          });
+          setTasks([...tasksUpdated]);
         }}
       >
         {({ errors, touched }) => (
@@ -76,7 +89,7 @@ export const FormAddTask = ({ setModal, tasks, setTasks }) => {
 
             <div style={{ display: "flex", justifyContent: "center" }}>
               <button type="submit" className={"btn btn-success"}>
-                Add
+                Update
               </button>
               <button
                 type="button"

@@ -1,8 +1,14 @@
 import React from "react";
 
 const taskStyle = {
-  height: "200px",
-  width: "150px",
+  height: "auto",
+  maxWidth: "160px",
+};
+
+const buttonsStyle = {
+  display: "flex",
+  justifyContent: "center",
+  marginTop: "5px",
 };
 
 const lowPrioriryStyle = <span className="badge text-bg-info">low</span>;
@@ -11,12 +17,26 @@ const mediumPrioriryStyle = (
 );
 const highPrioriryStyle = <span className="badge text-bg-danger">high</span>;
 
-export const Task = ({ task, tasks, setTasks }) => {
+export const Task = ({
+  task,
+  tasks,
+  setTasks,
+  handleDeleteTask,
+  handleEditTask,
+}) => {
   return (
-    <div className={"form-control m-2"} style={taskStyle}>
-      <h5>{task.name}</h5>
-      <p>{task.description}</p>
-      <div className="form-check form-switch">
+    <div className={"form-control m-2 text-break"} style={taskStyle}>
+      <h5 style={task.isCompleted ? { textDecoration: "line-through" } : {}}>
+        {task.name}
+      </h5>
+      <p style={task.isCompleted ? { textDecoration: "line-through" } : {}}>
+        {task.description}
+      </p>
+      {task.priority === "low" && lowPrioriryStyle}
+      {task.priority === "medium" && mediumPrioriryStyle}
+      {task.priority === "high" && highPrioriryStyle}
+
+      <div className="form-check form-switch mt-2 mb-2">
         <input
           className="form-check-input"
           type="checkbox"
@@ -32,16 +52,37 @@ export const Task = ({ task, tasks, setTasks }) => {
               })
             );
           }}
-          checked={task.isCompleted}
         />
 
         <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
-          {task.isCompleted ? "Completed" : "Incompleted"}
+          {task.isCompleted ? (
+            <span style={{ color: "green", fontStyle: "italic" }}>
+              Completed
+            </span>
+          ) : (
+            <span style={{ color: "gray", fontStyle: "italic" }}>
+              Incompleted
+            </span>
+          )}
         </label>
       </div>
-      {task.priority === "low" && lowPrioriryStyle}
-      {task.priority === "medium" && mediumPrioriryStyle}
-      {task.priority === "high" && highPrioriryStyle}
+
+      <div style={buttonsStyle}>
+        <button
+          type="button"
+          className="btn btn-danger"
+          onClick={() => handleDeleteTask(task.id)}
+        >
+          <i className="bi-trash2"></i>
+        </button>
+        <button
+          type="button"
+          className="btn btn-success"
+          onClick={() => handleEditTask(task)}
+        >
+          <i className="bi-pen"></i>
+        </button>
+      </div>
     </div>
   );
 };

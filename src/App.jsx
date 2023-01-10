@@ -1,4 +1,5 @@
 import { Home } from "./pages/home/Home";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const divStyle = {
   display: "grid",
