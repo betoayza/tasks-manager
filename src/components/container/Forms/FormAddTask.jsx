@@ -25,12 +25,19 @@ export const FormAddTask = ({ setModal, tasks, setTasks }) => {
     <div>
       <h1>Add Task:</h1>
       <Formik
-        initialValues={{ name: "", description: "", priority: "" }}
+        initialValues={{
+          id: Date.now(),
+          name: "",
+          description: "",
+          isCompleted: false,
+          priority: "",
+        }}
         validationSchema={SignUpSchema}
         onSubmit={async (values) => {
           await new Promise((resolve) => setTimeout(resolve, 500));
-          alert(JSON.stringify(values, null, 2));
+          alert("Task added!: \n" + JSON.stringify(values, null, 2));
           setTasks([...tasks, values]);
+          setModal(false);
         }}
       >
         {({ errors, touched }) => (

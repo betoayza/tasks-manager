@@ -17,11 +17,10 @@ export const Home = () => {
   };
 
   const handleDeleteTask = (taskID) => {
-    setTasks(
-      tasks.filter((task) => {
-        return task.id != taskID;
-      })
-    );
+    let asd = tasks.filter((tsk) => {
+      return tsk.id != taskID;
+    });
+    setTasks(asd);
   };
 
   const handleEditTask = (task) => {
@@ -52,15 +51,8 @@ export const Home = () => {
     </Modal>
   ) : (
     <div className={"border"}>
-      <button
-        type="button"
-        className="btn btn-primary"
-        onClick={handleAddTask}        
-      >
-        <i
-          style={{ fontSize: "20px" }}
-          className="bi-plus-circle-fill"
-        ></i>
+      <button type="button" className="btn btn-primary" onClick={handleAddTask}>
+        <i style={{ fontSize: "20px" }} className="bi-plus-circle-fill"></i>
       </button>
       <div
         className={"row row-cols-auto border vw-100"}
