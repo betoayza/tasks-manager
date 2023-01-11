@@ -20,6 +20,20 @@ const SignUpSchema = yup.object().shape({
     .required(`Priority  required`),
 });
 
+let arrColors = [
+  "#ffa07a",
+  "#ff6347",
+  "#d0ff14",
+  "#ffcff1",
+  "#7df9ff",
+  "#ffd700",
+];
+
+const randomColor = () => {
+  let colorChosen = arrColors[Math.floor(Math.random() * 6)];
+  return colorChosen;
+};
+
 export const FormAddTask = ({ setModal, tasks, setTasks }) => {
   return (
     <div>
@@ -31,6 +45,7 @@ export const FormAddTask = ({ setModal, tasks, setTasks }) => {
           description: "",
           isCompleted: false,
           priority: "",
+          color: randomColor()
         }}
         validationSchema={SignUpSchema}
         onSubmit={async (values) => {

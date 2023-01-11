@@ -1,10 +1,5 @@
 import React from "react";
 
-const taskStyle = {
-  height: "auto",
-  maxWidth: "160px",
-};
-
 const buttonsStyle = {
   display: "flex",
   justifyContent: "center",
@@ -24,14 +19,22 @@ export const Task = ({
   handleDeleteTask,
   handleEditTask,
 }) => {
+  const taskStyle = {
+    height: "auto",
+    maxWidth: "160px",
+    backgroundColor: `${task.color}`,
+  };
+
   return (
-    <div className={"form-control m-2 text-break"} style={taskStyle}>
+    <div className={"form-control m-2"} style={taskStyle}>
       <h5 style={task.isCompleted ? { textDecoration: "line-through" } : {}}>
         {task.name}
       </h5>
-      <p style={task.isCompleted ? { textDecoration: "line-through" } : {}}>
-        {task.description}
-      </p>
+      <div className={"text-break"}>
+        <p style={task.isCompleted ? { textDecoration: "line-through" } : {}}>
+          {task.description}
+        </p>
+      </div>
       {task.priority === "low" && lowPrioriryStyle}
       {task.priority === "medium" && mediumPrioriryStyle}
       {task.priority === "high" && highPrioriryStyle}

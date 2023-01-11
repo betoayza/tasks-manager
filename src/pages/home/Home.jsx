@@ -50,12 +50,12 @@ export const Home = () => {
       )}
     </Modal>
   ) : (
-    <div className={"border"}>
+    <div>
       <button type="button" className="btn btn-primary" onClick={handleAddTask}>
         <i style={{ fontSize: "20px" }} className="bi-plus-circle-fill"></i>
       </button>
       <div
-        className={"row row-cols-auto border vw-100"}
+        className={"row row-cols-auto vw-100"}
         style={{ display: "flex", justifyContent: "center" }}
       >
         {tasks.length ? (
