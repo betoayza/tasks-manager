@@ -32,6 +32,7 @@ export const FormEditTask = ({ task, setModal, tasks, setTasks }) => {
           description: task.description,
           isCompleted: task.isCompleted,
           priority: task.priority,
+          color: task.color
         }}
         validationSchema={SignUpSchema}
         onSubmit={async (values) => {

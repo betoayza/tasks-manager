@@ -26,12 +26,27 @@ export const Task = ({
   };
 
   return (
-    <div className={"form-control m-2"} style={taskStyle}>
-      <h5 style={task.isCompleted ? { textDecoration: "line-through" } : {}}>
+    <div
+      className={"form-control border border-dark border-3 m-2"}
+      style={taskStyle}
+    >
+      <h5
+        style={
+          task.isCompleted
+            ? { textDecoration: "line-through", textDecorationColor: "red" }
+            : {}
+        }
+      >
         {task.name}
       </h5>
       <div className={"text-break"}>
-        <p style={task.isCompleted ? { textDecoration: "line-through" } : {}}>
+        <p
+          style={
+            task.isCompleted
+              ? { textDecoration: "line-through", textDecorationColor: "red" }
+              : {}
+          }
+        >
           {task.description}
         </p>
       </div>
