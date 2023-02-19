@@ -18,6 +18,7 @@ const SignUpSchema = yup.object().shape({
     .string()
     //.matches(/(low|medium|high)/)
     .oneOf(["low", "medium", "high"], `Only "low", "medium" or "high" accepted`)
+    .lowercase()
     .required(`Priority  required`),
 });
 
@@ -39,6 +40,7 @@ export const FormAddTask = ({ setModal, tasks, setTasks }) => {
         validationSchema={SignUpSchema}
         onSubmit={async (values) => {
           await new Promise((resolve) => setTimeout(resolve, 500));
+          values.priority = values.priority.toLowerCase();
           alert("Task added!: \n" + JSON.stringify(values, null, 2));
           setTasks([...tasks, values]);
           setModal(false);
@@ -77,6 +79,7 @@ export const FormAddTask = ({ setModal, tasks, setTasks }) => {
               placeholder={"Priority..."}
               name="priority"
               type="text"
+              style={{ textTransform: "lowercase" }}
             />
 
             {errors.priority && touched.priority ? (

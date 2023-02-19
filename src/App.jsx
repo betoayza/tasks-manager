@@ -11,7 +11,7 @@ const divStyle = {
 function App() {
   return (
     <div className="App text-center" style={divStyle}>
-      <h1>Task Manager 2023</h1>
+      <h1>Tasks Manager 2023</h1>
       <Home />
     </div>
   );

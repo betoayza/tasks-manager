@@ -27,7 +27,7 @@ export const Task = ({
 
   return (
     <div
-      className={"form-control border border-dark border-3 m-2"}
+      className={"form-control border border-dark border-3 m-2 text-break"}
       style={taskStyle}
     >
       <h5
@@ -36,10 +36,11 @@ export const Task = ({
             ? { textDecoration: "line-through", textDecorationColor: "red" }
             : {}
         }
+        className={""}
       >
         {task.name}
       </h5>
-      <div className={"text-break"}>
+      <div className={""}>
         <p
           style={
             task.isCompleted
