@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
-import { useGetRandomColor } from "../../../hooks/useGetRandomColor";
+import { helpGetRandomColor } from "../../../helpers/helpGetRandomColor";
 
 const SignUpSchema = yup.object().shape({
   name: yup
@@ -16,14 +16,13 @@ const SignUpSchema = yup.object().shape({
     .required("Description required"),
   priority: yup
     .string()
-    //.matches(/(low|medium|high)/)
     .oneOf(["low", "medium", "high"], `Only "low", "medium" or "high" accepted`)
     .lowercase()
     .required(`Priority  required`),
 });
 
 export const FormAddTask = ({ setModal, tasks, setTasks }) => {
-  const randomColor = useGetRandomColor();
+  let randomColor = helpGetRandomColor();
 
   return (
     <div>
